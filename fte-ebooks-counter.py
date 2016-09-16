@@ -17,8 +17,8 @@ if os.path.isfile('fte_books_download-count.html'):
 if os.path.isfile('books.txt'):
 	os.remove("books.txt")
 
-if os.path.isfile('all_files.csv'):
-	os.remove("all_files.csv")
+if os.path.isfile('./data/all_files.csv'):
+	os.remove("./data/all_files.csv")
                            
 
 def books():
@@ -41,7 +41,7 @@ def books():
 def count():
 
     fle = open("books.txt",'r')
-    all_files = open('all_files.csv','wb')
+    all_files = open('./data/all_files.csv','wb')
     all_files.write("நூலின் பெயர்~epub~mobi~A4 PDF~6 inch PDF~மொத்தம்\n")
     counter_list = []
 
@@ -92,56 +92,3 @@ books()
 count()
 
 
-csvFile = open('all_files.csv')#enter the csv filename
-csvReader = csv.reader(csvFile,delimiter = '~')
-csvData = list(csvReader)
-
-
-timestamp = time.strftime("%d/%m/%Y %H:%M:%S")
-
-with open('fte_books_download-count.html', 'w') as html: #enter the output filename
-    html.write(''' <head>
-	<meta charset="UTF-8">
-	</head> ''')
-    html.write("<h1> <a href='http://FreeTamilEbooks.com' target='_blank'>FreeTamilEbooks.com</a></h1>")
-    html.write(timestamp)
-    html.write("<p>&nbsp;</p>")
-
-    html.write('''<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-''')    
-    html.write('<table data-toggle = "table" data-pagination = "true">\r')
-    r = 0
-    for row in csvData:
-        if r == 0:
-            html.write('\t<thead>\r\t\t<tr>\r')
-            for col in row:
-                html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
-            html.write('\t\t</tr>\r\t</thead>\r')
-            html.write('\t<tbody>\r')
-        else:
-            html.write('\t\t<tr>\r')
-            for col in row:
-                html.write('\t\t\t<td>' + col + '</td>\r')
-            html.write('\t\t</tr>\r')
-
-        r += 1
-    html.write('\t</tbody>\r')
-    html.write('</table>\r')
-    
-    html.write('''
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-''')
-
-os.remove("books.txt")
-os.remove("all_files.csv")
