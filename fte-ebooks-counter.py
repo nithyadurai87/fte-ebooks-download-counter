@@ -8,7 +8,7 @@ import BeautifulSoup
 import csv
 import time
 import os
-
+from time import gmtime, strftime
 
 
 if os.path.isfile('fte_books_download-count.html'):
@@ -92,3 +92,40 @@ books()
 count()
 
 
+
+
+
+with open('data/all_files.csv') as sample, open('data/all_files_reverse_sorted.csv', "w") as out:
+    csv1=csv.reader(sample,delimiter='~')
+    header = next(csv1, None)
+    csv_writer = csv.writer(out,delimiter='~')
+    if header:
+        csv_writer.writerow(header)
+    csv_writer.writerows(sorted(csv1, key=lambda x:int(x[5]),reverse=True))
+
+
+
+
+timestamp = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+
+
+
+
+with open("data/all_files_reverse_sorted.csv") as fin:
+    headerline = fin.next()
+    total = 0
+    for row in csv.reader(fin,delimiter='~'):
+        total += int(row[5])
+
+
+
+total_time = open('data/time_total.html','w')
+
+total_time.write('<link href="../css/bootstrap.min.css" rel="stylesheet">\n')
+total_time.write("<p align='right'> இந்தப் பட்டியல் தினமும் ஒரு முறை இற்றைப்படுத்தப் படுகிறது. டைசி இற்றை நேரம்   " + timestamp + "<br/>")
+total_time.write(" மொத்தப் பதிவிறக்கங்கள் =   " + str(total) + "</p>")
+total_time.close()
+
+                  
+
+                                                                                                                              
