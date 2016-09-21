@@ -122,10 +122,9 @@ with open("data/all_files_reverse_sorted.csv") as fin:
 total_time = open('data/time_total.html','w')
 
 total_time.write('<link href="../css/bootstrap.min.css" rel="stylesheet">\n')
-total_time.write("<p align='right'> இந்தப் பட்டியல் தினமும் ஒரு முறை இற்றைப்படுத்தப் படுகிறது. டைசி இற்றை நேரம்   " + timestamp + "<br/>")
+total_time.write("<p align='right'> இந்தப் பட்டியல் தினமும் ஒரு முறை இற்றைப்படுத்தப்படுகிறது. கடைசி இற்றை நேரம்   " + timestamp + "<br/>")
 total_time.write(" மொத்தப் பதிவிறக்கங்கள் =   " + str(total) + "</p>")
 total_time.close()
-
                   
 
                                                                                                                               
