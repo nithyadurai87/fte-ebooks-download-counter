@@ -65,22 +65,15 @@
 
 
       CsvToHtmlTable.init({
-        csv_path: 'data/all_files_reverse_sorted.csv', 
+        csv_path: 'data/all_files.csv', 
         element: 'table-container', 
         allow_download: true,
         csv_options: {separator: '~', delimiter: '~'},
-        datatables_options: {"paging": true},
-//        custom_formatting: [[4, format_link]]
-
+ datatables_options: {"paging": true, "order": [[ 5, "desc" ]]}
   
       
 });
 
-//$('.table').dataTable( {
-//  "columnDefs": [
-//    { "orderSequence": [ "asc" ], "targets": [ 5 ] }
-//  ]
-//} );
   
   </script>
   </body>
